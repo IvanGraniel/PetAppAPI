@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a1dd895d9c644ea589b1a11bee1b2b47" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.CategoriaLugares" Width="1.5" PointX="8.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.Choferes" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.Direcciones" Width="1.5" PointX="12.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.Estados" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.Galeria" Width="1.5" PointX="12.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.Lugar" Width="1.5" PointX="10.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.Municipio" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0FC7A_PetAppModel.Pais" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="DB_A0FC7A_PetAppModel.FK__Lugar__IdCategor__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A0FC7A_PetAppModel.FK__Choferes__idMuni__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A0FC7A_PetAppModel.FK__Direccion__idLug__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A0FC7A_PetAppModel.FK__Estados__IdPais__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A0FC7A_PetAppModel.FK__Municipio__IdEst__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A0FC7A_PetAppModel.FK__Galeria__IdLugar__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A0FC7A_PetAppModel.FK__Lugar__IdMunicip__4E88ABD4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

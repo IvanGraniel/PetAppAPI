@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A0FC7A_PetAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CategoriaLugares">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Categoria" Type="varchar" MaxLength="50" />
+    <Property Name="Imagen" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Choferes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" />
+    <Property Name="NumTaxi" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="Foto" Type="varchar" MaxLength="150" />
+    <Property Name="NumTel" Type="varchar" MaxLength="150" />
+    <Property Name="Ciudad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="idMunicipio" Type="int" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="50" />
+    <Property Name="idLugar" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Codigo" Type="varchar" MaxLength="10" />
+    <Property Name="IdPais" Type="varchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="Galeria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="url_imagen" Type="varchar" MaxLength="150" />
+    <Property Name="IdLugar" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Lugar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="50" />
+    <Property Name="Twitter" Type="varchar" MaxLength="50" />
+    <Property Name="Facebook" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Horario" Type="varchar" MaxLength="50" />
+    <Property Name="IdMunicipio" Type="int" />
+    <Property Name="Latitud" Type="varchar" MaxLength="15" />
+    <Property Name="Longitude" Type="varchar" MaxLength="15" />
+    <Property Name="IdCategoria" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Municipio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="IdEstado" Type="int" />
+  </EntityType>
+  <EntityType Name="Pais">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Choferes__idMuni__5AEE82B9">
+    <End Role="Municipio" Type="Self.Municipio" Multiplicity="0..1" />
+    <End Role="Choferes" Type="Self.Choferes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Choferes">
+        <PropertyRef Name="idMunicipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Direccion__idLug__5BE2A6F2">
+    <End Role="Lugar" Type="Self.Lugar" Multiplicity="1" />
+    <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lugar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Direcciones">
+        <PropertyRef Name="idLugar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Estados__IdPais__48CFD27E">
+    <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+    <End Role="Estados" Type="Self.Estados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pais">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Estados">
+        <PropertyRef Name="IdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Galeria__IdLugar__5070F446">
+    <End Role="Lugar" Type="Self.Lugar" Multiplicity="0..1" />
+    <End Role="Galeria" Type="Self.Galeria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lugar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Galeria">
+        <PropertyRef Name="IdLugar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lugar__IdCategor__4F7CD00D">
+    <End Role="CategoriaLugares" Type="Self.CategoriaLugares" Multiplicity="0..1" />
+    <End Role="Lugar" Type="Self.Lugar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaLugares">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lugar">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lugar__IdMunicip__4E88ABD4">
+    <End Role="Municipio" Type="Self.Municipio" Multiplicity="0..1" />
+    <End Role="Lugar" Type="Self.Lugar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lugar">
+        <PropertyRef Name="IdMunicipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Municipio__IdEst__4BAC3F29">
+    <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+    <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipio">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_A0FC7A_PetAppModelStoreContainer">
+    <EntitySet Name="CategoriaLugares" EntityType="Self.CategoriaLugares" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Choferes" EntityType="Self.Choferes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Direcciones" EntityType="Self.Direcciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Galeria" EntityType="Self.Galeria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lugar" EntityType="Self.Lugar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Municipio" EntityType="Self.Municipio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Choferes__idMuni__5AEE82B9" Association="Self.FK__Choferes__idMuni__5AEE82B9">
+      <End Role="Municipio" EntitySet="Municipio" />
+      <End Role="Choferes" EntitySet="Choferes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Direccion__idLug__5BE2A6F2" Association="Self.FK__Direccion__idLug__5BE2A6F2">
+      <End Role="Lugar" EntitySet="Lugar" />
+      <End Role="Direcciones" EntitySet="Direcciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Estados__IdPais__48CFD27E" Association="Self.FK__Estados__IdPais__48CFD27E">
+      <End Role="Pais" EntitySet="Pais" />
+      <End Role="Estados" EntitySet="Estados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Galeria__IdLugar__5070F446" Association="Self.FK__Galeria__IdLugar__5070F446">
+      <End Role="Lugar" EntitySet="Lugar" />
+      <End Role="Galeria" EntitySet="Galeria" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lugar__IdCategor__4F7CD00D" Association="Self.FK__Lugar__IdCategor__4F7CD00D">
+      <End Role="CategoriaLugares" EntitySet="CategoriaLugares" />
+      <End Role="Lugar" EntitySet="Lugar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lugar__IdMunicip__4E88ABD4" Association="Self.FK__Lugar__IdMunicip__4E88ABD4">
+      <End Role="Municipio" EntitySet="Municipio" />
+      <End Role="Lugar" EntitySet="Lugar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Municipio__IdEst__4BAC3F29" Association="Self.FK__Municipio__IdEst__4BAC3F29">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Municipio" EntitySet="Municipio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
